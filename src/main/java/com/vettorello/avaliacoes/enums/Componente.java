@@ -1,0 +1,23 @@
+package com.vettorello.avaliacoes.enums;
+
+public enum Componente {
+    LINGUA_PORTUGUESA,
+    PRODUCAO_TEXTUAL,
+    ARTE,
+    EDUCACAO_FISICA,
+    HISTORIA,
+    GEOGRAFIA,
+    ENSINO_RELIGIOSO,
+    CIENCIAS,
+    MATEMATICA,
+    PROTAGONISMO_SOCIAL,
+    LITERATURA,
+    LINGUA_INGLESA,
+    LINGUA_ESPANHOLA,
+    FILOSOFIA,
+    SOCIOLOGIA,
+    FISICA,
+    QUIMICA,
+    BIOLOGIA,
+    EMPREENDEDORISMO_SOCIAL;
+}
