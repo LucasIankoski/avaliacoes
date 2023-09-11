@@ -1,20 +1,25 @@
 package com.vettorello.avaliacoes.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.io.Serializable;
 
 @Entity
-@Table(name = "turmas")
+@Builder
+@Table(name = "turmas", schema = "vettorello")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Turma {
+public class Turma implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-    private int codigo;
+
+    @Column(name = "codigo", length = 255)
+    private String codigo;
+
 }

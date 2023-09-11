@@ -15,8 +15,12 @@ public class Avaliacao {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Componente componente;
+
     private String hyperlink;
+
+    @ManyToOne
     private Turma turma;
 
 }
