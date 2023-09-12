@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface TurmaRepository extends JpaRepository<Turma, Long> {
 
    Turma findByCodigo(String codigo);
+
+   boolean existePorCodigo(String codigo);
 }

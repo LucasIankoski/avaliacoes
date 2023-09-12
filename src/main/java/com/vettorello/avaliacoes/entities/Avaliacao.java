@@ -14,13 +14,17 @@ import lombok.*;
 public class Avaliacao {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "componente")
     private Componente componente;
 
+    @Column(name = "hyperlink")
     private String hyperlink;
 
     @ManyToOne
+    @JoinColumn(name = "turma")
     private Turma turma;
 
 }
