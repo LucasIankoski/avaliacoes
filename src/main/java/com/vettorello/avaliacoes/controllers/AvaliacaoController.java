@@ -9,10 +9,9 @@ import com.vettorello.avaliacoes.services.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/avaliacao")
@@ -42,5 +41,19 @@ public class AvaliacaoController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(service.salvar(avaliacao));
 
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Avaliacao>> filtrarAvaliacao(
+                    @RequestParam("turma") String turma,
+                    @RequestParam(value = "componente", required = false) String componente){
+
+        List<Avaliacao> avaliacoes = service.filtrarPorTurmaEComponente(turma, componente);
+
+        if(avaliacoes.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(avaliacoes);
     }
 }
