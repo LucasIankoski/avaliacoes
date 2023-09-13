@@ -42,7 +42,7 @@ public class AvaliacaoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.salvar(avaliacao));
 
     }
-
+/*
     @GetMapping
     public ResponseEntity<List<Avaliacao>> filtrarAvaliacao(
                     @RequestParam("turma") String turma,
@@ -55,5 +55,5 @@ public class AvaliacaoController {
         }
 
         return ResponseEntity.ok(avaliacoes);
-    }
+    }*/
 }

@@ -1,6 +1,5 @@
 package com.vettorello.avaliacoes.entities;
 
-import com.vettorello.avaliacoes.enums.Componente;
 import jakarta.persistence.*;
 import lombok.*;
 
