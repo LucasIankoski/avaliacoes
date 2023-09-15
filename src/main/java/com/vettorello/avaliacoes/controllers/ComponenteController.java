@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Locale;
+
 @RestController
 @RequestMapping(value = "/componente")
 public class ComponenteController {
@@ -20,7 +22,7 @@ public class ComponenteController {
 
     @PostMapping
     public ResponseEntity salvar(@RequestBody ComponenteDTO dto){
-        Componente componente = Componente.builder().descricao(dto.descricao()).build();
+        Componente componente = Componente.builder().descricao(dto.descricao().toUpperCase(Locale.ROOT)).build();
         try{
             Componente novoComponente = service.salvar(componente);
             return new ResponseEntity(novoComponente, HttpStatus.CREATED);

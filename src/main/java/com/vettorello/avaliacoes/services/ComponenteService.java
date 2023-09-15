@@ -16,4 +16,8 @@ public class ComponenteService {
     public Componente salvar(Componente componente){
         return repository.save(componente);
     }
+
+    public Componente filtrarPorDescricao(String descricao){
+        return repository.findByDescricao(descricao);
+    }
 }

@@ -16,7 +16,8 @@ public class Avaliacao {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "componente")
+    @ManyToOne
+    @JoinColumn(name = "componente")
     private Componente componente;
 
     @Column(name = "hyperlink")
