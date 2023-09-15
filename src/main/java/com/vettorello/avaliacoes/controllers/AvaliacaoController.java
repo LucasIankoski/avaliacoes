@@ -24,9 +24,6 @@ public class AvaliacaoController {
     private AvaliacaoService service;
 
     @Autowired
-    private TurmaRepository turmaRepository;
-
-    @Autowired
     private TurmaService turmaService;
 
     @Autowired
@@ -50,18 +47,21 @@ public class AvaliacaoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.salvar(avaliacao));
 
     }
-/*
+
     @GetMapping
     public ResponseEntity<List<Avaliacao>> filtrarAvaliacao(
                     @RequestParam("turma") String turma,
                     @RequestParam(value = "componente", required = false) String componente){
 
-        List<Avaliacao> avaliacoes = service.filtrarPorTurmaEComponente(turma, componente);
+        Turma objTurma = turmaService.filtrarTurmaPorCodigo(turma);
+        Componente objCompomente = componenteService.filtrarPorDescricao(componente);
+
+        List<Avaliacao> avaliacoes = service.filtrarPorTurmaEComponente(objTurma, objCompomente);
 
         if(avaliacoes.isEmpty()){
             return ResponseEntity.notFound().build();
         }
 
         return ResponseEntity.ok(avaliacoes);
-    }*/
+    }
 }

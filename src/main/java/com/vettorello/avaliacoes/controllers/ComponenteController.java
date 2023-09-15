@@ -33,4 +33,8 @@ public class ComponenteController {
 
     }
 
+    public ResponseEntity buscarComponente(){
+        return null;
+    }
+
 }
