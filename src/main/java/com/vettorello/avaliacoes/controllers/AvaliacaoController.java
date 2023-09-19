@@ -54,7 +54,7 @@ public class AvaliacaoController {
                     @RequestParam(value = "componente", required = false) String componente){
 
         Turma objTurma = turmaService.filtrarTurmaPorCodigo(turma);
-        Componente objCompomente = componenteService.filtrarPorDescricao(componente);
+        Componente objCompomente = componenteService.filtrarPorDescricao(componente.toUpperCase(Locale.ROOT));
 
         List<Avaliacao> avaliacoes = service.filtrarPorTurmaEComponente(objTurma, objCompomente);
 
