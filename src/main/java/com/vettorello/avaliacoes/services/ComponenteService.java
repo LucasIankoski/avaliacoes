@@ -6,6 +6,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ComponenteService {
 
@@ -19,5 +21,9 @@ public class ComponenteService {
 
     public Componente filtrarPorDescricao(String descricao){
         return repository.findByDescricao(descricao);
+    }
+
+    public List<Componente> buscarTodosComponentes(){
+        return repository.findAll();
     }
 }
