@@ -24,4 +24,8 @@ public class AvaliacaoService {
     public List<Avaliacao> filtrarPorTurmaEComponente(Turma turma, Componente componente) {
         return repository.findByTurmaAndComponente(turma, componente);
     }
+
+    public List<Avaliacao> filtrarComponentesComAvaliacaoPorTurma(Turma turma){
+        return repository.findByTurma(turma);
+    }
 }

@@ -10,4 +10,6 @@ import java.util.List;
 public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Long> {
 
     List<Avaliacao> findByTurmaAndComponente(Turma turma, Componente componente);
+
+    List<Avaliacao> findByTurma(Turma turma);
 }
