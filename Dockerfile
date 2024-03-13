@@ -9,13 +9,20 @@ RUN apt-get update && \
     unzip -q gradle-8.2.1-bin.zip -d /opt && \
     rm gradle-8.2.1-bin.zip
 
-# Adiciona o Gradle ao PATH
-ENV PATH="/opt/gradle-8.2.1/bin:${PATH}"
+# Configuração do ambiente Gradle
+ENV GRADLE_HOME /opt/gradle-8.2.1
+ENV PATH $PATH:$GRADLE_HOME/bin
 
-# Copia o código-fonte e executa o bootJar
+# Copia o código-fonte
 COPY . /app
 WORKDIR /app
-RUN ./gradlew bootJar
+
+# Garante que o script gradlew tem permissões de execução
+RUN chmod +x ./gradlew
+
+# Executa o bootJar
+RUN ./gradlew clean build
+
 # Stage 2: Runtime Stage
 FROM openjdk:17-slim
 
