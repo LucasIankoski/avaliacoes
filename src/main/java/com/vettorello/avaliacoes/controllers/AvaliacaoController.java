@@ -47,6 +47,7 @@ public class AvaliacaoController {
 
         avaliacao.setComponente(componente);
         avaliacao.setHyperlink(dto.hyperlink());
+        avaliacao.setTitulo(dto.titulo());
 
         Turma turma = turmaService.filtrarTurmaPorCodigo(dto.turma());
         avaliacao.setTurma(turma);

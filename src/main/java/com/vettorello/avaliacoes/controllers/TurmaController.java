@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/turma")
-public class TurmaController {
+public class    TurmaController {
 
     @Autowired
     private TurmaService service;

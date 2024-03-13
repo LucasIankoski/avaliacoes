@@ -16,6 +16,9 @@ public class Avaliacao {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "titulo")
+    private String titulo;
+
     @ManyToOne
     @JoinColumn(name = "componente")
     private Componente componente;
