@@ -1,16 +1,23 @@
+# Stage 1: Build Stage
 FROM ubuntu:latest AS build
 
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
-COPY . .
+# Instalação do OpenJDK 17 e Maven
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jdk maven
 
-RUN apt-get install maven -y
-RUN mvn clean install
+# Copia o código-fonte e executa o bootJar
+COPY . /app
+WORKDIR /app
+RUN ./gradlew clean build
 
+# Stage 2: Runtime Stage
 FROM openjdk:17-slim
 
 EXPOSE 8081
 
-COPY --from=build /target/avaliacoes-1.0.0.jar app.jar
+WORKDIR /app
 
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
+# Copia o JAR construído do estágio anterior
+COPY --from=build /app/build/libs/avaliacoes-1.0.0.jar app.jar
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
