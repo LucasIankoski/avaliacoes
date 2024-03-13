@@ -15,8 +15,7 @@ ENV PATH="/opt/gradle-8.2.1/bin:${PATH}"
 # Copia o código-fonte e executa o bootJar
 COPY . /app
 WORKDIR /app
-RUN gradle clean build
-
+RUN ./gradlew bootJar
 # Stage 2: Runtime Stage
 FROM openjdk:17-slim
 
