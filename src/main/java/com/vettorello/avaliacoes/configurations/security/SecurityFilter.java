@@ -1,6 +1,5 @@
 package com.vettorello.avaliacoes.configurations.security;
 
-
 import com.vettorello.avaliacoes.entities.Usuario;
 import com.vettorello.avaliacoes.repositories.UsuarioRepository;
 import jakarta.servlet.FilterChain;
@@ -19,12 +18,10 @@ import java.util.Collections;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
-
     @Autowired
     TokenService tokenService;
-
     @Autowired
-    UsuarioRepository usuarioRepository;
+    UsuarioRepository UsuarioRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -32,21 +29,17 @@ public class SecurityFilter extends OncePerRequestFilter {
         var login = tokenService.validarToken(token);
 
         if(login != null){
-            Usuario usuario = usuarioRepository.findByEmail(login).orElseThrow(() ->  new RuntimeException("Usuário não encontrado"));
-            var autorizacoes = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-            var autenticacoes = new UsernamePasswordAuthenticationToken(usuario, null, autorizacoes);
-            SecurityContextHolder.getContext().setAuthentication(autenticacoes);
+            Usuario usuario = UsuarioRepository.findByEmail(login).orElseThrow(() -> new RuntimeException("User Not Found"));
+            var authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+            var authentication = new UsernamePasswordAuthenticationToken(usuario, null, authorities);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
-
         filterChain.doFilter(request, response);
     }
 
     private String recoverToken(HttpServletRequest request){
         var authHeader = request.getHeader("Authorization");
-        if(authHeader == null){
-            return null;
-        }
-
-        return authHeader.replace("Bearer", "");
+        if(authHeader == null) return null;
+        return authHeader.replace("Bearer ", "");
     }
 }
